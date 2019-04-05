@@ -19,7 +19,7 @@ public class CityService {
 	private CityRepository repo;
 
 	/**
-	 * Returns either list of all countries or filtered countries using /cities?country=<value>
+	 * Returns either list of all countries or filtered countries using /cities?country=<value>.
 	 * @param country
 	 * @return
 	 */

@@ -19,7 +19,7 @@ public class CountryService {
 	private CountryRepository repo;
 	
 	/**
-	 * Lists all countries
+	 * Returns all countries.
 	 * @return
 	 */
 	public List<CountryDTO> findAll() {
