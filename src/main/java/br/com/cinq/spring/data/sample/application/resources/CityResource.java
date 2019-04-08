@@ -1,4 +1,4 @@
-package br.com.cinq.spring.data.sample.application.dto;
+package br.com.cinq.spring.data.sample.application.resources;
 
 import java.io.Serializable;
 
@@ -11,7 +11,7 @@ import br.com.cinq.spring.data.sample.application.domain.Country;
  * @author Tadeu Augusto Dutra Pinto
  *
  */
-public class CityDTO implements Serializable {
+public class CityResource implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -19,11 +19,11 @@ public class CityDTO implements Serializable {
 	private String name;
 	private Country country;
 
-	public CityDTO() {
+	public CityResource() {
 		
 	}
-	
-	public CityDTO(City city) {
+		
+	public CityResource(City city) {
 		id = city.getId();
 		name = city.getName();
 		country = city.getCountry();

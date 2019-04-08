@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.cinq.spring.data.sample.application.domain.Country;
-import br.com.cinq.spring.data.sample.application.dto.CountryDTO;
 import br.com.cinq.spring.data.sample.application.exceptions.ObjectNotFoundException;
 import br.com.cinq.spring.data.sample.application.repositories.CountryRepository;
+import br.com.cinq.spring.data.sample.application.resources.CountryResource;
 
 /**
  * CityService represents the service class for countries.
@@ -28,10 +28,10 @@ public class CountryService {
 	 * Returns all countries.
 	 * @return
 	 */
-	public List<CountryDTO> findCountries() {
+	public List<CountryResource> findCountries() {
 		
-		List<CountryDTO> dtoList = repo.findAll()
-				.stream().map(obj -> new CountryDTO(obj))
+		List<CountryResource> dtoList = repo.findAll()
+				.stream().map(obj -> new CountryResource(obj))
 				.collect(Collectors.toList());
 		
 		return dtoList;
@@ -42,19 +42,19 @@ public class CountryService {
 	 * @param id
 	 * @return
 	 */
-	public CountryDTO findCountryById(Integer id) {
+	public CountryResource findCountryById(Integer id) {
 		
 		Optional<Country> optionalCountry = repo.findById(id);
 		
-		return optionalCountry.map(obj -> new CountryDTO(obj)).orElseThrow(() -> new ObjectNotFoundException("Country Not Found! Id: " + id + ", [" + CountryService.class.getName() + "]"));
+		return optionalCountry.map(obj -> new CountryResource(obj)).orElseThrow(() -> new ObjectNotFoundException("Country Not Found! Id: " + id + ", [" + CountryService.class.getName() + "]"));
 	}
 	
-	public List<CountryDTO> findLikeName(String country) {
+	public List<CountryResource> findLikeName(String country) {
 		
 		List<Country> countries = repo.findLikeName(country);
 		
-		List<CountryDTO> dtoList = countries.stream()
-				.map(obj -> new CountryDTO(obj))
+		List<CountryResource> dtoList = countries.stream()
+				.map(obj -> new CountryResource(obj))
 				.distinct()
 				.collect(Collectors.toList());
 

@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.cinq.spring.data.sample.application.domain.City;
-import br.com.cinq.spring.data.sample.application.dto.CityDTO;
 import br.com.cinq.spring.data.sample.application.exceptions.ObjectNotFoundException;
 import br.com.cinq.spring.data.sample.application.repositories.CityRepository;
+import br.com.cinq.spring.data.sample.application.resources.CityResource;
 
 /**
  * CityService represents the service class for cities.
@@ -29,15 +29,15 @@ public class CityService {
 	 * @param country
 	 * @return
 	 */
-	public List<CityDTO> findCitiesByCountry(String country) {
+	public List<CityResource> findCitiesByCountry(String country) {
 		
 		Optional<String> optionalParam = Optional.ofNullable(country);
 		List<City> cities = !optionalParam.isPresent() 
 							? repo.findAll() 
 							: repo.findByCountry(country);
 		
-		List<CityDTO> dtoList = cities.stream()
-				.map(obj -> new CityDTO(obj))
+		List<CityResource> dtoList = cities.stream()
+				.map(obj -> new CityResource(obj))
 				.distinct()
 				.collect(Collectors.toList());
 
@@ -49,10 +49,10 @@ public class CityService {
 	 * @param id
 	 * @return
 	 */
-	public CityDTO findCityById(Integer id) {
+	public CityResource findCityById(Integer id) {
 
 		return repo.findById(id)
-				.map(obj -> new CityDTO(obj))
+				.map(obj -> new CityResource(obj))
 				.orElseThrow(() -> new ObjectNotFoundException("City Not Found! [" + CityService.class.getName() + "]"));
 	}
 

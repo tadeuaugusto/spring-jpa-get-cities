@@ -8,11 +8,11 @@ Maven Spring Boot project with Data JPA and Data Rest. Besides the starters we h
 
 Available Endpoints:
 
-curl -X GET http://localhost:8080/rest/countries/
-curl -X GET http://localhost:8080/rest/countries/{id}
-curl -X GET http://localhost:8080/rest/cities/
-curl -X GET http://localhost:8080/rest/cities/{id}
-curl -X GET http://localhost:8080/rest/cities?country={name}
+- curl -X GET http://localhost:8080/rest/countries/
+- curl -X GET http://localhost:8080/rest/countries/{id}
+- curl -X GET http://localhost:8080/rest/cities/
+- curl -X GET http://localhost:8080/rest/cities/{id}
+- curl -X GET http://localhost:8080/rest/cities?country={name}
 
 
 
