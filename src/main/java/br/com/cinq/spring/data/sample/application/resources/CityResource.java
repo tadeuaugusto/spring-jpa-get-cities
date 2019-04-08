@@ -1,41 +1,56 @@
-package br.com.cinq.spring.data.sample.application.resources;
+package br.com.cinq.spring.data.sample.application.dto;
 
-import java.util.List;
+import java.io.Serializable;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import br.com.cinq.spring.data.sample.application.domain.City;
+import br.com.cinq.spring.data.sample.application.domain.Country;
 
-import br.com.cinq.spring.data.sample.application.dto.CityDTO;
-import br.com.cinq.spring.data.sample.application.services.CityService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+/**
+ * CityDTO represents the city transfer object
+ * 
+ * @author Tadeu Augusto Dutra Pinto
+ *
+ */
+public class CityDTO implements Serializable {
 
-@RestController
-@RequestMapping(value="/rest")
-@Api(value = "CityResource")
-public class CityResource {
+	private static final long serialVersionUID = 1L;
 
-	@Autowired
-	private CityService cityService;
+	private Integer id;
+	private String name;
+	private Country country;
 
-	@ApiOperation(value = "Returns either list of all countries or filtered countries using /cities?country=<value>.")
-	@GetMapping(value="/cities",produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<CityDTO>> find(@RequestParam(value = "country", required = false) String country) {
+	public CityDTO() {
 		
-		return ResponseEntity.ok().body(cityService.findByCountry(country));
 	}
 	
-	@ApiOperation(value = "Returns CityDTO object by id through the /cities/{id} endpoint. Otherwise found it returns a custom exception.")
-	@GetMapping(value="/cities/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<CityDTO> findById(@PathVariable Integer id) {
-		
-		return ResponseEntity.ok().body(cityService.findById(id));
+	public CityDTO(City city) {
+		id = city.getId();
+		name = city.getName();
+		country = city.getCountry();
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Country getCountry() {
+		return country;
+	}
+
+	public void setCountry(Country country) {
+		this.country = country;
 	}
 
 }

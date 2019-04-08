@@ -10,6 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import br.com.cinq.spring.data.sample.application.services.DBService;
 
+/**
+ * Dev profile database configuration
+ * 
+ * @author Tadeu Augusto Dutra Pinto
+ *
+ */
 @Configuration
 @Profile("dev")
 public class DevConfig {

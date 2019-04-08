@@ -12,6 +12,12 @@ import br.com.cinq.spring.data.sample.application.dto.CountryDTO;
 import br.com.cinq.spring.data.sample.application.exceptions.ObjectNotFoundException;
 import br.com.cinq.spring.data.sample.application.repositories.CountryRepository;
 
+/**
+ * CityService represents the service class for countries.
+ * 
+ * @author Tadeu Augusto Dutra Pinto
+ *
+ */
 @Service
 public class CountryService {
 
@@ -22,7 +28,7 @@ public class CountryService {
 	 * Returns all countries.
 	 * @return
 	 */
-	public List<CountryDTO> findAll() {
+	public List<CountryDTO> findCountries() {
 		
 		List<CountryDTO> dtoList = repo.findAll()
 				.stream().map(obj -> new CountryDTO(obj))
@@ -36,10 +42,22 @@ public class CountryService {
 	 * @param id
 	 * @return
 	 */
-	public CountryDTO findById(Integer id) {
+	public CountryDTO findCountryById(Integer id) {
 		
 		Optional<Country> optionalCountry = repo.findById(id);
 		
-		return optionalCountry.map(obj -> new CountryDTO(obj)).orElseThrow(() -> new ObjectNotFoundException("Object Not Found! Id: " + id + ", [" + CountryService.class.getName() + "]"));
+		return optionalCountry.map(obj -> new CountryDTO(obj)).orElseThrow(() -> new ObjectNotFoundException("Country Not Found! Id: " + id + ", [" + CountryService.class.getName() + "]"));
+	}
+	
+	public List<CountryDTO> findLikeName(String country) {
+		
+		List<Country> countries = repo.findLikeName(country);
+		
+		List<CountryDTO> dtoList = countries.stream()
+				.map(obj -> new CountryDTO(obj))
+				.distinct()
+				.collect(Collectors.toList());
+
+		return dtoList;
 	}
 }

@@ -1,5 +1,11 @@
 package br.com.cinq.spring.data.sample.application.exceptions;
 
+/**
+ * Custom exception for object not found
+ * 
+ * @author Tadeu Augusto Dutra Pinto
+ *
+ */
 public class ObjectNotFoundException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;

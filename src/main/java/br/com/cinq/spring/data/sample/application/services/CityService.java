@@ -12,6 +12,12 @@ import br.com.cinq.spring.data.sample.application.dto.CityDTO;
 import br.com.cinq.spring.data.sample.application.exceptions.ObjectNotFoundException;
 import br.com.cinq.spring.data.sample.application.repositories.CityRepository;
 
+/**
+ * CityService represents the service class for cities.
+ * 
+ * @author Tadeu Augusto Dutra Pinto
+ *
+ */
 @Service
 public class CityService {
 
@@ -19,17 +25,21 @@ public class CityService {
 	private CityRepository repo;
 
 	/**
-	 * Returns either list of all countries or filtered countries using /cities?country=<value>.
+	 * Returns either list of all cities or filtered cities using /cities?country=<value>.
 	 * @param country
 	 * @return
 	 */
-	public List<CityDTO> findByCountry(String country) {
+	public List<CityDTO> findCitiesByCountry(String country) {
 		
 		Optional<String> optionalParam = Optional.ofNullable(country);
-		System.out.println(optionalParam.isPresent());
-		List<City> cities = !optionalParam.isPresent() ? repo.findAll() : repo.findByCountry(country);
+		List<City> cities = !optionalParam.isPresent() 
+							? repo.findAll() 
+							: repo.findByCountry(country);
 		
-		List<CityDTO> dtoList = cities.stream().map(obj -> new CityDTO(obj)).collect(Collectors.toList());
+		List<CityDTO> dtoList = cities.stream()
+				.map(obj -> new CityDTO(obj))
+				.distinct()
+				.collect(Collectors.toList());
 
 		return dtoList;
 	}
@@ -39,11 +49,11 @@ public class CityService {
 	 * @param id
 	 * @return
 	 */
-	public CityDTO findById(Integer id) {
+	public CityDTO findCityById(Integer id) {
 
-		Optional<City> optionalCity = repo.findById(id);
-		
-		return optionalCity.map(obj -> new CityDTO(obj)).orElseThrow(() -> new ObjectNotFoundException("Object Not Found! Id: " + id + ", [" + CityService.class.getName() + "]"));
+		return repo.findById(id)
+				.map(obj -> new CityDTO(obj))
+				.orElseThrow(() -> new ObjectNotFoundException("City Not Found! [" + CityService.class.getName() + "]"));
 	}
 
 }

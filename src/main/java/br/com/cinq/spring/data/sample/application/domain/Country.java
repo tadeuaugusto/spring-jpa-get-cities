@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 /**
  * Country represents the country
  * 
- * @author Tadeu
+ * @author Tadeu Augusto Dutra Pinto
  *
  */
 @Entity
@@ -90,6 +90,11 @@ public class Country implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Country [id=" + id + ", name=" + name + ", cities=" + cities + "]";
 	}
 
 }

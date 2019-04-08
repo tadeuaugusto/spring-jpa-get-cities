@@ -25,6 +25,6 @@ HELP.md
 /nbdist/
 /.nb-gradle/
 /build/
-
+/src/test/java
 ### VS Code ###
 .vscode/

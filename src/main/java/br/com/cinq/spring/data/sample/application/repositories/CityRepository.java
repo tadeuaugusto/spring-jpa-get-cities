@@ -8,6 +8,12 @@ import org.springframework.stereotype.Repository;
 
 import br.com.cinq.spring.data.sample.application.domain.City;
 
+/**
+ * CountryRepository
+ * 
+ * @author Tadeu Augusto Dutra Pinto
+ *
+ */
 @Repository
 public interface CityRepository extends JpaRepository<City, Integer>{
 

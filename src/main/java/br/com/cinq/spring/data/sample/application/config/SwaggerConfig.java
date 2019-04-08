@@ -11,6 +11,12 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * Swagger2 for API configuration
+ * 
+ * @author Tadeu Augusto Dutra Pinto
+ *
+ */
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
@@ -31,7 +37,7 @@ public class SwaggerConfig {
 		ApiInfoBuilder apiInfoBuilder = new ApiInfoBuilder();
 
 		apiInfoBuilder.title("GET REST");
-		apiInfoBuilder.description("API using Spring Boot with Java8 including H2 Database and Swagger2 for API documentation.");
+		apiInfoBuilder.description("Spring Boot API exposing GET operations.");
 		apiInfoBuilder.version("1.0");
 		apiInfoBuilder.license("License - Open Source");
 		apiInfoBuilder.licenseUrl("https://github.com/tadeuaugusto/SpringJpaGetRest");
@@ -45,22 +51,5 @@ public class SwaggerConfig {
 
 		return new Contact("Tadeu Augusto Dutra Pinto", "https://github.com/tadeuaugusto", "tadeuaugusto@gmail.com");
 	}
-	// @Bean
-	// public Docket api() {
-	// return new Docket(DocumentationType.SWAGGER_2)
-	// .select()
-	// .apis(RequestHandlerSelectors.any())
-	// .paths(PathSelectors.any())
-	// .build();
-	// }
-	//
-	// private ApiInfo metaData() {
-	// return new ApiInfoBuilder().title("Spring Boot REST API")
-	// .description("\"Spring Boot REST API for GET Cities and
-	// Countries\"").version("1.0.0")
-	// .license("Apache License Version
-	// 2.0").licenseUrl("https://www.apache.org/licenses/LICENSE-2.0\"")
-	// .build();
-	// }
 
 }

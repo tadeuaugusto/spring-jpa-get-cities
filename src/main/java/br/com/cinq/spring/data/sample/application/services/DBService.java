@@ -10,6 +10,12 @@ import br.com.cinq.spring.data.sample.application.domain.Country;
 import br.com.cinq.spring.data.sample.application.repositories.CityRepository;
 import br.com.cinq.spring.data.sample.application.repositories.CountryRepository;
 
+/**
+ * DBService is responsible for generating the data for the application.
+ * 
+ * @author Tadeu Augusto Dutra Pinto
+ *
+ */
 @Service
 public class DBService {
 
