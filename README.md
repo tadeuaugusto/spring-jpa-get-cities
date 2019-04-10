@@ -1,18 +1,32 @@
 # SpringJpaGetRest
 
+Spring boot REST API project using JPA, HATEOAS and Swagger.
 
-Maven Spring Boot project with Data JPA and Data Rest. Besides the starters we have also have: 
-- MySQL and H2 (in-memory database) for datasources configuration
-- Hypermedia as the Engine of Application State (HATEOAS)
-- Swagger2 for endpoints documentation 
+# Setup
+- Clone the project
+- Change database connection config in src/main/resources/application-{AMB}.properties and regarding to the environment configure properly the application.properties file
+- Install maven dependencies using IDE auto import or using the command mvn install
+- Run the app using IDE or the command mvn spring-boot:run
+- Browse http//localhost:8080/rest/cities
 
-Available Endpoints:
+#API Doc & Sample
 
-- curl -X GET http://localhost:8080/rest/countries/
-- curl -X GET http://localhost:8080/rest/countries/{id}
-- curl -X GET http://localhost:8080/rest/cities/
-- curl -X GET http://localhost:8080/rest/cities/{id}
-- curl -X GET http://localhost:8080/rest/cities?country={name}
+a) List all cities
 
+	GET /rest/cities
 
+b) Get specific city
 
+	GET /rest/cities/1
+
+c) List all countries
+
+	GET /rest/countries
+
+d) Get specific country
+
+	GET /rest/countries/1
+	
+e) Get cities for a specific country
+
+	GET /rest/cities?country=Brazil
